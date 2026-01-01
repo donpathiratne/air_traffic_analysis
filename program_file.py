@@ -1,0 +1,46 @@
+'''air traffic analising program'''
+
+from graphics import *
+import csv
+import math
+
+data_list = [] # data_list is an empty list to load and hold data from csv file
+
+'''get data and append them to data_list'''
+def load_csv(csv_chosen):
+    with open(csv_chosen,'r') as file:
+        csvreader= csv.reader(file)
+        header= next(csvreader)
+        for row in csvreader:
+            data_list.append(row)
+
+# create the air port code dictionary
+airport_code= {'LHR': 'London Heathrow',
+               'MAD': 'Madrid Adolfo Suarez-Barajas',
+               'CDG': 'Charles De gaulle International',
+               'IST': 'Istanbul Airport International',
+               'AMS': 'Amsterdam Schiphol',
+               'LIS': 'Lisbon portela',
+               'FRA': 'Frankfurt main',
+               'FCO': 'Rome Fiumicino',
+               'MUC': 'Munich International',
+               'BCN': 'Barcelona International'
+               }
+
+# create a air line code dict
+air_line= {'BA': 'British Airways',
+           'AF': 'Air france',
+           'AY': 'Finnair',
+           'KL': 'KLM',
+           'SK': 'Scandinavian Airlines',
+           'TP': 'TAP Air Portugal',
+           'TK': 'Turkish Airlines',
+           'W6': 'Wizz Air',
+           'U2': 'easyJet',
+           'FR': 'Ryanair',
+           'A3': 'Aegean Airlines',
+           'SN': 'Brussels Airlines',
+           'EK': 'Emirates',
+           'QR': 'Qutar Airways',
+           'IB': 'Iberia',
+           'LH': 'Lufthansa'}
