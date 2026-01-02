@@ -44,3 +44,18 @@ air_line= {'BA': 'British Airways',
            'QR': 'Qutar Airways',
            'IB': 'Iberia',
            'LH': 'Lufthansa'}
+
+'''get city code from user'''
+def city_fuction():
+    city_code= input('please enter a three-letter city code: ')
+    while True:
+        if len(city_code) == 3: # check that city code length is 3 
+            city_code=city_code.upper()
+            if city_code in airport_code: # check city code in airport code
+                break
+            else:
+                city_code= input('Unavilable city code - please enter a three letter city code: ')
+                continue
+        else:
+            city_code= input('wrong code length - please enter a three letter city code: ')
+    return city_code
