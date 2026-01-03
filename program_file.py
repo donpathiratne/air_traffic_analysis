@@ -59,3 +59,18 @@ def city_fuction():
         else:
             city_code= input('wrong code length - please enter a three letter city code: ')
     return city_code
+
+'''get year from user'''
+def year_function():
+    year= input('Please enter the year required in the format YYYY:')
+    while True:
+        try:
+            year= int(year) # check is it correct data type
+            if year<=2000 and year<=2025: # check the year within the range
+                break
+            else:
+                year= input('Out of range - please enter a value from 2000 to 2025: ')
+                continue
+        except:
+            year= input('Wrong data type - please enter a four digit year value: ') 
+    return year
