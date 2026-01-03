@@ -75,7 +75,7 @@ def year_function():
             year= input('Wrong data type - please enter a four digit year value: ') 
     return year
 
-'''create selected data file and display the cdg file, year that has been chosen by user.'''
+'''create selected data file and display the related file with year that has been chosen by user.'''
 def data_file_function():
     selected_data_file= city_code+ ''+ str(year)+ '.csv'
     try:
@@ -86,3 +86,8 @@ def data_file_function():
         print('File not found.')
         exit()
     return selected_data_file
+
+'''call all above functions and return their values'''
+city_code= city_function()
+year= year_function()
+selected_data_file= data_file_function()
