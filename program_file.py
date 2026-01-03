@@ -74,3 +74,15 @@ def year_function():
         except:
             year= input('Wrong data type - please enter a four digit year value: ') 
     return year
+
+'''create selected data file and display the cdg file, year that has been chosen by user.'''
+def data_file_function():
+    selected_data_file= city_code+ ''+ str(year)+ '.csv'
+    try:
+        print('*'*50)
+        print(f'{selected_data_file} selected - Planes departing {airport_code[city_code]}  {year}')
+        print('*'*50)
+    except:
+        print('File not found.')
+        exit()
+    return selected_data_file
