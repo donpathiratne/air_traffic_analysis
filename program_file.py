@@ -105,3 +105,12 @@ delay_air_france= 0
 percentage_delay_air_france= 0
 count_rain= []
 destination_list= []
+
+def main2():
+    def func1():
+        global count_list
+        count_list=count_list+1 # counting total of data lists in selected data file  
+
+    def func2():
+        global total_terminal_2
+        total_terminal_2=total_terminal_2 + 1 # counting number of flights departing from Terminal two
