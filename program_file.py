@@ -91,3 +91,17 @@ def data_file_function():
 city_code= city_function()
 year= year_function()
 selected_data_file= data_file_function()
+
+'''create variables'''
+count_list= 0
+total_terminal_2=  0
+destination_miles= 0
+air_france= 0
+temperature_below_15= 0
+british_airways= 0
+avg_per_hour= 0
+percentage_british_airway= 0
+delay_air_france= 0
+percentage_delay_air_france= 0
+count_rain= []
+destination_list= []
