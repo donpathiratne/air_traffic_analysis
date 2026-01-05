@@ -114,3 +114,13 @@ def main2():
     def func2():
         global total_terminal_2
         total_terminal_2=total_terminal_2 + 1 # counting number of flights departing from Terminal two
+        
+    def func3():
+        global destination_miles       
+        destination_miles=destination_miles + 1 # counting number of departuer flights under 600 miles
+
+    def func4():
+        global air_france
+        air_france=air_france + 1 # counting Air France aircrafts
+        return air_france # to get air_farance value later
+    
