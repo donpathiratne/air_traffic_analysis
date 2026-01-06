@@ -136,3 +136,15 @@ def main2():
     def func7():
         global percentage_british_airway
         percentage_british_airway= (british_airways / count_list) * 100 # counting the percentage of total departures that are British Airways aircraft
+    
+    def func8():
+    global percentage_delay_air_france, delay_air_france
+    try:
+        if i[3]!=i[2] and i[1][0:2]=='AF': # check sheduled and actual departures are not same in air france
+            delay_air_france=delay_air_france + 1 # count number of delay air france
+        if air_france>0:
+            percentage_delay_air_france=round((delay_air_france / air_france)* 100,2) # cannot divide by zero
+        else:
+            percentage_delay_air_france='0.0'
+    except ZeroDivisionError:
+        percentage_delay_air_france='0.0' # unless it will give an zerodivision error
