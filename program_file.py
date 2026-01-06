@@ -123,4 +123,16 @@ def main2():
         global air_france
         air_france=air_france + 1 # counting Air France aircrafts
         return air_france # to get air_farance value later
+        
+    def func5():    
+        global temperature_below_15   
+        temperature_below_15=temperature_below_15 + 1   # counting number of flights departing in temperatures below 15 
     
+    def func6():
+        global british_airways, avg_per_hour       
+        british_airways=british_airways + 1 # counting number of british airways 
+        avg_per_hour=british_airways / 12 # the average number of British Airways departures per hour
+
+    def func7():
+        global percentage_british_airway
+        percentage_british_airway= (british_airways / count_list) * 100 # counting the percentage of total departures that are British Airways aircraft
