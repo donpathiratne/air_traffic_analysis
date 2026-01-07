@@ -148,3 +148,21 @@ def main2():
             percentage_delay_air_france='0.0'
     except ZeroDivisionError:
         percentage_delay_air_france='0.0' # unless it will give an zerodivision error
+    def func9():
+        global count_rain
+        if i[-1][-4:]=='rain': # only get rain includes
+            if i[2][0:2] == '00': # check it equals to 00
+                if '00' not in count_rain: # check 00 not in count_rain list
+                    count_rain.append('00') # append to the list 
+            elif i[2][0:2] == '01':# check it equals to 01
+                if '01' not in count_rain:# check 01 not in count_rain list
+                    count_rain.append('01')
+            elif i[2][0:2] == '02':# check it equals to 02
+                if '02' not in count_rain:# check 02 not in count_rain list
+                    count_rain.append('02')
+            elif i[2][0:2] == '03':# check it equals to 03
+                if '03' not in count_rain:# check 03 not in count_rain list
+                    count_rain.append('03')
+            elif i[2][0:2] == '04':# check it equals to 04
+                if '04' not in count_rain:# check 04 not in count_rain list
+                    count_rain.append('04')
