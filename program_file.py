@@ -166,3 +166,29 @@ def main2():
             elif i[2][0:2] == '04':# check it equals to 04
                 if '04' not in count_rain:# check 04 not in count_rain list
                     count_rain.append('04')
+            elif i[2][0:2] == '05':# check it equals to 05
+                if '05' not in count_rain:# check 05 not in count_rain list
+                    count_rain.append('05')
+            elif i[2][0:2] == '06':# check it equals to 06
+                if '06' not in count_rain:# check 06 not in count_rain list
+                    count_rain.append('06')
+            if i[2][0:2] == '07':# check it equals to 07
+                if '07' not in count_rain:# check 07 not in count_rain list
+                    count_rain.append('07')
+            if i[2][0:2] == '08':# check it equals to 08
+                if '08' not in count_rain:# check 08 not in count_rain list
+                    count_rain.append('08')
+            if i[2][0:2] == '09':# check it equals to 09
+                if '09' not in count_rain:# check 09 not in count_rain list
+                    count_rain.append('09')
+            if i[2][0:2] == '10':# check it equals to 10
+                if '10' not in count_rain:# check 10 not in count_rain list
+                    count_rain.append('10')
+            if i[2][0:2] == '11':# check it equals to 11
+                if '11' not in count_rain:# check 11 not in count_rain list
+                    count_rain.append('11')
+            else:
+                pass # unless it will not count 
+            
+    def func10():
+        destination_list.append(i[4])# append destination to the destination list
