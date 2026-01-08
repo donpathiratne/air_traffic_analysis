@@ -192,3 +192,16 @@ def main2():
             
     def func10():
         destination_list.append(i[4])# append destination to the destination list
+
+    for i in data_list:
+        func1() # call the func1()
+    
+        if i[8]=='2': # check index 8 equals to '2'
+            func2() # call the func2()
+    
+        if int(i[5])<600: # check distace mile is under 600
+            func3() # call the func3()
+    
+        if i[1][0:2]=='AF': # check Air France air craft
+            func4()# call the func4()
+
