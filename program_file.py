@@ -204,4 +204,14 @@ def main2():
     
         if i[1][0:2]=='AF': # check Air France air craft
             func4()# call the func4()
+            
+        if i[-1][0:2]<'15':# check the value only below 15
+            func5()
 
+        if i[1][0:2]=='BA':# check only starting from 'BA' in flightNum
+            func6()
+        
+        func7() # call the func7()
+        func8() # call the func8()
+        func9() # call the func9()
+        func10() # call the func11()
