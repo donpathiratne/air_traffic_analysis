@@ -261,3 +261,13 @@ def main2():
                 destination_dict[airport_code['BCN']]=count_bcn # input the total count to BCN key in destination_dict
             else:
                 print('something went wrong') # unless it will print this msg
+                
+        least_destination_list=[] # empty list
+        least_common_value= min(destination_dict.values()) # get minimum value in destination_dict values
+        for y in destination_dict: # run a loop by using destination_dict
+            if destination_dict[y]== least_common_value: # check least_common_value equals to destination_dict value
+                least_destination_list.append(y) # append least_common_value to least_destination_list
+        return least_destination_list # to get result after
+
+
+    least_destination_list = main2() # call main2() function and assign value to least_destination_list
