@@ -215,3 +215,49 @@ def main2():
         func8() # call the func8()
         func9() # call the func9()
         func10() # call the func11()
+        
+        # create empty variables for counting destinations 
+        count_lhr= count_mad= count_cdg= count_ist= count_ams= count_lis= count_fra= count_fco= count_muc= count_bcn= 0  
+        destination_dict={} # empty dict
+        for x in range(len(destination_list)):# get the length of destination_list and run a loop
+            if destination_list[x] == 'LHR':                    # check list's data equal to LHR
+                count_lhr += 1                                  # if equal, counting number of lhr
+                destination_dict[airport_code['LHR']]=count_lhr # input the total count to lhr key in destination_dict
+
+            elif destination_list[x] == 'MAD':                  # check list's data equal to MAD
+                count_mad += 1                                  # if equal, counting number of MAD
+                destination_dict[airport_code['MAD']]=count_mad # input the total count to MAD key in destination_dict
+
+            elif destination_list[x] == 'CDG':                  # check list's data equal to CDG
+                count_cdg += 1                                  # if equal, counting number of CDG
+                destination_dict[airport_code['CDG']]=count_cdg # input the total count to CDG key in destination_dict
+
+            elif destination_list[x] == 'IST':                  # check list's data equal to IST
+                count_ist += 1                                  # if equal, counting number of IST
+                destination_dict[airport_code['IST']]=count_ist # input the total count to IST key in destination_dict
+
+            elif destination_list[x] == 'AMS':                  # check list's data equal to AMS
+                count_ams += 1                                  # if equal, counting number of AMS
+                destination_dict[airport_code['AMS']]=count_ams # input the total count to AMS key in destination_dict
+
+            elif destination_list[x] == 'LIS':                  # check list's data equal to LIS
+                count_lis += 1                                  # if equal, counting number of LIS
+                destination_dict[airport_code['LIS']]=count_lis # input the total count to LIS key in destination_dict
+
+            elif destination_list[x] == 'FRA':                  # check list's data equal to FRA
+                count_fra += 1                                  # if equal, counting number of FRA
+                destination_dict[airport_code['FRA']]=count_fra # input the total count to FRA key in destination_dict
+
+            elif destination_list[x] == 'FCO':                  # check list's data equal to FCO
+                count_fco += 1                                  # if equal, counting number of FCO
+                destination_dict[airport_code['FCO']]=count_fco # input the total count to FCO key in destination_dict
+
+            elif destination_list[x] == 'MUC':                  # check list's data equal to MUC
+                count_muc += 1                                  # if equal, counting number of MUC
+                destination_dict[airport_code['MUC']]=count_muc # input the total count to MUC key in destination_dict
+
+            elif destination_list[x] == 'BCN':                  # check list's data equal to BCN
+                count_bcn += 1                                  # if equal, counting number of BCN
+                destination_dict[airport_code['BCN']]=count_bcn # input the total count to BCN key in destination_dict
+            else:
+                print('something went wrong') # unless it will print this msg
