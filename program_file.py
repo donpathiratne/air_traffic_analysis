@@ -282,3 +282,26 @@ def main2():
     print(f'{percentage_delay_air_france}% of Air France departures were delayed')
     print(f'There were {len(count_rain)} hours in which rain fell')
     print(f'The least common destinations are {least_destination_list}')
+
+    # Task C
+    def main3():    
+        with open("result.txt", "a") as f:      # create a result.txt file and append above outputs without overwritting
+            f.write(('****************************************************************************\n'))
+            f.write((f' File {selected_data_file} selected - Planes departing {airport_code[city_code]} {year}\n'))
+            f.write(('****************************************************************************\n'))
+
+            f.write(f'The total number of flights from this airport was {count_list}\n')
+            f.write(f'The total number of flights departing Terminal Two was {total_terminal_2}\n')
+            f.write(f'The total number of departures on flights under 600 miles was {destination_miles}\n')
+            f.write(f'There were {air_france} Air France flights from this airport\n')
+            f.write(f'There were {temperature_below_15} flights departing in temperatures below 15 degrees\n')
+            f.write(f'There was an average of {round(avg_per_hour,2)} British Airways flights per hour from this airport\n')
+            f.write(f'British Airways planes made up {round(percentage_british_airway,2)}% of all departures\n')
+            f.write(f'{percentage_delay_air_france}% of Air France departures were delayed\n')
+            f.write(f'There were {count_rain} hours in which rain fell\n')
+            f.write(f'The least common destinations are {least_destination_list}\n')
+            f.close()
+
+        with open("result.txt", "r") as f:  # read the result.txt file
+            f.read()
+            f.close()
