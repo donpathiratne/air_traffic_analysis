@@ -271,3 +271,14 @@ def main2():
 
 
     least_destination_list = main2() # call main2() function and assign value to least_destination_list
+
+    print(f'The total number of flights from this airport was {count_list}')
+    print(f'The total number of flights departing Terminal Two was {total_terminal_2}')
+    print(f'The total number of departures on flights under 600 miles was {destination_miles}')
+    print(f'There were {air_france} Air France flights from this airport')
+    print(f'There were {temperature_below_15} flights departing in temperatures below 15 degrees')
+    print(f'There was an average of {round(avg_per_hour,2)} British Airways flights per hour from this airport')
+    print(f'British Airways planes made up {round(percentage_british_airway,2)}% of all departures')
+    print(f'{percentage_delay_air_france}% of Air France departures were delayed')
+    print(f'There were {len(count_rain)} hours in which rain fell')
+    print(f'The least common destinations are {least_destination_list}')
