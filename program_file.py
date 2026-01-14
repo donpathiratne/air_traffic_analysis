@@ -1,221 +1,231 @@
-'''air traffic analising program'''
-
+'''creating a airplane departures summeraization programe.'''
 from graphics import *
 import csv
 import math
 
-data_list = [] # data_list is an empty list to load and hold data from csv file
+data_list = []   # data_list An empty list to load and hold data from csv file
 
-'''get data and append them to data_list'''
-def load_csv(csv_chosen):
-    with open(csv_chosen,'r') as file:
-        csvreader= csv.reader(file)
-        header= next(csvreader)
+def load_csv(CSV_chosen):
+    """
+    This function loads any csv file by name (set by the variable 'selected_data_file') into the list "data_list"
+    YOU DO NOT NEED TO CHANGE THIS BLOCK OF CODE
+    """
+    with open(CSV_chosen, 'r') as file:
+        csvreader = csv.reader(file)
+        header = next(csvreader)
         for row in csvreader:
             data_list.append(row)
 
-# create the air port code dictionary
-airport_code= {'LHR': 'London Heathrow',
-               'MAD': 'Madrid Adolfo Suarez-Barajas',
-               'CDG': 'Charles De gaulle International',
-               'IST': 'Istanbul Airport International',
-               'AMS': 'Amsterdam Schiphol',
-               'LIS': 'Lisbon portela',
-               'FRA': 'Frankfurt main',
-               'FCO': 'Rome Fiumicino',
-               'MUC': 'Munich International',
-               'BCN': 'Barcelona International'
-               }
+selected_data_file="LHR2025.csv" #hard coded csv name to be replaced with your dynamically created filename
+load_csv(selected_data_file)     #calls the function "load_csv" sending the variable 'selected_data_file" as a parameter
 
-# create a air line code dict
-air_line= {'BA': 'British Airways',
-           'AF': 'Air france',
-           'AY': 'Finnair',
-           'KL': 'KLM',
-           'SK': 'Scandinavian Airlines',
-           'TP': 'TAP Air Portugal',
-           'TK': 'Turkish Airlines',
-           'W6': 'Wizz Air',
-           'U2': 'easyJet',
-           'FR': 'Ryanair',
-           'A3': 'Aegean Airlines',
-           'SN': 'Brussels Airlines',
-           'EK': 'Emirates',
-           'QR': 'Qutar Airways',
-           'IB': 'Iberia',
-           'LH': 'Lufthansa'}
+request = 'Y' # default value
+while request== 'Y': # if equals, it will run
+    data_list = []# clear data list
+    # Task A
+    airport_code={'LHR':'London Heathrow',
+            'MAD':'Madrid Adolfo Suárez-Barajas',          # create a airport code dict
+            'CDG':'Charles De Gaulle International',
+            'IST':'Istanbul Airport International',
+            'AMS':'Amsterdam Schiphol',
+            'LIS':'Lisbon Portela',
+            'FRA':'Frankfurt Main',
+            'FCO':'Rome Fiumicino',
+            'MUC':'Munich International',
+            'BCN':'Barcelona International'}
 
-'''get city code from user'''
-def city_fuction():
-    city_code= input('please enter a three-letter city code: ')
-    while True:
-        if len(city_code) == 3: # check that city code length is 3 
-            city_code=city_code.upper()
-            if city_code in airport_code: # check city code in airport code
-                break
+    air_line= { 'BA':'British Airways',                     # create a air line code dict                
+                'AF':'Air France',
+                'AY':'Finnair' ,
+                'KL':'KLM',
+                'SK':'Scandinavian Airlines',
+                'TP':'TAP Air Portugal', 
+                'TK':'Turkish Airlines',
+                'W6':'Wizz Air',
+                'U2':'easyJet', 
+                'FR':'Ryanair', 
+                'A3':'Aegean Airlines', 
+                'SN':'Brussels Airlines', 
+                'EK':'Emirates', 
+                'QR':'Qatar Airways', 
+                'IB':'Iberia', 
+                'LH':'Lufthansa'}
+
+    def city_function():
+        city_code=input('please enter a three-letter city code: ')   # get city code from user
+        while True:
+            if len(city_code)==3:               # check the length of city_code       
+                city_code=city_code.upper()     # convert city code to uppercase
+                if city_code in airport_code:   # check city code avaiable or not in airport code
+                    break
+                else:
+                    city_code=input('Unavailable city code - please enter a valid city code: ')   # get city_code again because previous one not in airport code
+                    continue
             else:
-                city_code= input('Unavilable city code - please enter a three letter city code: ')
-                continue
-        else:
-            city_code= input('wrong code length - please enter a three letter city code: ')
-    return city_code
+                city_code=input('Wrong code length – please enter a three-letter city code: ')    # get city_code again because previous one has wrong length
+        return city_code    # to get city code value after
 
-'''get year from user'''
-def year_function():
-    year= input('Please enter the year required in the format YYYY:')
-    while True:
+
+    def year_function():
+        year=input('Please enter the year required in the format YYYY: ')   # get year from user
+        while True:
+            try:
+                year=int(year)  # try to convert year string to integer 
+                if year>=2000 and year<=2025:   # check year is from 2000 to 2025
+                    break
+                else:
+                    year=input('Out of range - please enter a value from 2000 to 2025: ') # if year is out of range, get year again
+                    continue
+            except ValueError:  # unless convert it, it will give an error
+                year=input('Wrong data type - please enter a four-digit year value: ')# get year again 
+        return year
+
+    def data_file_fuction():
+        selected_data_file = city_code+ ''+ str(year)+ '.csv'    # assigning created csv file to selected_data_file
         try:
-            year= int(year) # check is it correct data type
-            if year<=2000 and year<=2025: # check the year within the range
-                break
-            else:
-                year= input('Out of range - please enter a value from 2000 to 2025: ')
-                continue
+            load_csv(selected_data_file)
+            print('****************************************************************************')
+            print(f' File {selected_data_file} selected - Planes departing {airport_code[city_code]} {year}') # make the print statement
+            print('****************************************************************************')
         except:
-            year= input('Wrong data type - please enter a four digit year value: ') 
-    return year
+            print('File not Found.')
+            exit()  #  exit the python program
+        return selected_data_file
 
-'''create selected data file and display the related file with year that has been chosen by user.'''
-def data_file_function():
-    selected_data_file= city_code+ ''+ str(year)+ '.csv'
-    try:
-        print('*'*50)
-        print(f'{selected_data_file} selected - Planes departing {airport_code[city_code]}  {year}')
-        print('*'*50)
-    except:
-        print('File not found.')
-        exit()
-    return selected_data_file
 
-'''call all above functions and return their values'''
-city_code= city_function()
-year= year_function()
-selected_data_file= data_file_function()
 
-'''create variables'''
-count_list= 0
-total_terminal_2=  0
-destination_miles= 0
-air_france= 0
-temperature_below_15= 0
-british_airways= 0
-avg_per_hour= 0
-percentage_british_airway= 0
-delay_air_france= 0
-percentage_delay_air_france= 0
-count_rain= []
-destination_list= []
+    city_code = city_function() # call the city_fuction and return city code value and assign to city_code
+    year = year_function()          # call the year_function and return the year and assign to year
+    selected_data_file = data_file_fuction()    # call data_file_function and return selected data file value and assign it
 
-def main2():
-    def func1():
-        global count_list
-        count_list=count_list+1 # counting total of data lists in selected data file  
+    # Task B 
 
-    def func2():
-        global total_terminal_2
-        total_terminal_2=total_terminal_2 + 1 # counting number of flights departing from Terminal two
-        
-    def func3():
-        global destination_miles       
-        destination_miles=destination_miles + 1 # counting number of departuer flights under 600 miles
+    count_list= 0
+    total_terminal_2=  0
+    destination_miles= 0
+    air_france= 0
+    temperature_below_15= 0
+    british_airways= 0
+    avg_per_hour= 0
+    percentage_british_airway= 0
+    delay_air_france= 0
+    percentage_delay_air_france= 0
+    count_rain= []
+    destination_list= []
 
-    def func4():
-        global air_france
-        air_france=air_france + 1 # counting Air France aircrafts
-        return air_france # to get air_farance value later
-        
-    def func5():    
-        global temperature_below_15   
-        temperature_below_15=temperature_below_15 + 1   # counting number of flights departing in temperatures below 15 
-    
-    def func6():
-        global british_airways, avg_per_hour       
-        british_airways=british_airways + 1 # counting number of british airways 
-        avg_per_hour=british_airways / 12 # the average number of British Airways departures per hour
+    def main2():
+        def func1():
+            global count_list
+            count_list=count_list+1 # counting total of data lists in selected data file  
 
-    def func7():
-        global percentage_british_airway
-        percentage_british_airway= (british_airways / count_list) * 100 # counting the percentage of total departures that are British Airways aircraft
-    
-    def func8():
-    global percentage_delay_air_france, delay_air_france
-    try:
-        if i[3]!=i[2] and i[1][0:2]=='AF': # check sheduled and actual departures are not same in air france
-            delay_air_france=delay_air_france + 1 # count number of delay air france
-        if air_france>0:
-            percentage_delay_air_france=round((delay_air_france / air_france)* 100,2) # cannot divide by zero
-        else:
-            percentage_delay_air_france='0.0'
-    except ZeroDivisionError:
-        percentage_delay_air_france='0.0' # unless it will give an zerodivision error
-    def func9():
-        global count_rain
-        if i[-1][-4:]=='rain': # only get rain includes
-            if i[2][0:2] == '00': # check it equals to 00
-                if '00' not in count_rain: # check 00 not in count_rain list
-                    count_rain.append('00') # append to the list 
-            elif i[2][0:2] == '01':# check it equals to 01
-                if '01' not in count_rain:# check 01 not in count_rain list
-                    count_rain.append('01')
-            elif i[2][0:2] == '02':# check it equals to 02
-                if '02' not in count_rain:# check 02 not in count_rain list
-                    count_rain.append('02')
-            elif i[2][0:2] == '03':# check it equals to 03
-                if '03' not in count_rain:# check 03 not in count_rain list
-                    count_rain.append('03')
-            elif i[2][0:2] == '04':# check it equals to 04
-                if '04' not in count_rain:# check 04 not in count_rain list
-                    count_rain.append('04')
-            elif i[2][0:2] == '05':# check it equals to 05
-                if '05' not in count_rain:# check 05 not in count_rain list
-                    count_rain.append('05')
-            elif i[2][0:2] == '06':# check it equals to 06
-                if '06' not in count_rain:# check 06 not in count_rain list
-                    count_rain.append('06')
-            if i[2][0:2] == '07':# check it equals to 07
-                if '07' not in count_rain:# check 07 not in count_rain list
-                    count_rain.append('07')
-            if i[2][0:2] == '08':# check it equals to 08
-                if '08' not in count_rain:# check 08 not in count_rain list
-                    count_rain.append('08')
-            if i[2][0:2] == '09':# check it equals to 09
-                if '09' not in count_rain:# check 09 not in count_rain list
-                    count_rain.append('09')
-            if i[2][0:2] == '10':# check it equals to 10
-                if '10' not in count_rain:# check 10 not in count_rain list
-                    count_rain.append('10')
-            if i[2][0:2] == '11':# check it equals to 11
-                if '11' not in count_rain:# check 11 not in count_rain list
-                    count_rain.append('11')
-            else:
-                pass # unless it will not count 
+        def func2():
+            global total_terminal_2
+            total_terminal_2=total_terminal_2 + 1 # counting number of flights departing from Terminal two
+
+        def func3():
+            global destination_miles       
+            destination_miles=destination_miles + 1 # counting number of departuer flights under 600 miles
+
+        def func4():
+            global air_france
+            air_france=air_france + 1 # counting Air France aircrafts
+            return air_france # to get air_farance value later
+
+        def func5():    
+            global temperature_below_15   
+            temperature_below_15=temperature_below_15 + 1   # counting number of flights departing in temperatures below 15 
+
+        def func6():
+            global british_airways, avg_per_hour       
+            british_airways=british_airways + 1 # counting number of british airways 
+            avg_per_hour=british_airways / 12 # the average number of British Airways departures per hour
+
+        def func7():
+            global percentage_british_airway
+            percentage_british_airway= (british_airways / count_list) * 100 # counting the percentage of total departures that are British Airways aircraft
+
+        def func8():
+            global percentage_delay_air_france, delay_air_france
+            try:
+                if i[3]!=i[2] and i[1][0:2]=='AF': # check sheduled and actual departures are not same in air france
+                    delay_air_france=delay_air_france + 1 # count number of delay air france
+                if air_france>0:
+                    percentage_delay_air_france=round((delay_air_france / air_france)* 100,2) # cannot divide by zero
+                else:
+                    percentage_delay_air_france='0.0'
+            except ZeroDivisionError:
+                percentage_delay_air_france='0.0' # unless it will give an zerodivision error
+
+        def func9():
+            global count_rain
+            if i[-1][-4:]=='rain': # only get rain includes
+                if i[2][0:2] == '00': # check it equals to 00
+                    if '00' not in count_rain: # check 00 not in count_rain list
+                        count_rain.append('00') # append to the list 
+                elif i[2][0:2] == '01':# check it equals to 01
+                    if '01' not in count_rain:# check 01 not in count_rain list
+                        count_rain.append('01')
+                elif i[2][0:2] == '02':# check it equals to 02
+                    if '02' not in count_rain:# check 02 not in count_rain list
+                        count_rain.append('02')
+                elif i[2][0:2] == '03':# check it equals to 03
+                    if '03' not in count_rain:# check 03 not in count_rain list
+                        count_rain.append('03')
+                elif i[2][0:2] == '04':# check it equals to 04
+                    if '04' not in count_rain:# check 04 not in count_rain list
+                        count_rain.append('04')
+                elif i[2][0:2] == '05':# check it equals to 05
+                    if '05' not in count_rain:# check 05 not in count_rain list
+                        count_rain.append('05')
+                elif i[2][0:2] == '06':# check it equals to 06
+                    if '06' not in count_rain:# check 06 not in count_rain list
+                        count_rain.append('06')
+                if i[2][0:2] == '07':# check it equals to 07
+                    if '07' not in count_rain:# check 07 not in count_rain list
+                        count_rain.append('07')
+                if i[2][0:2] == '08':# check it equals to 08
+                    if '08' not in count_rain:# check 08 not in count_rain list
+                        count_rain.append('08')
+                if i[2][0:2] == '09':# check it equals to 09
+                    if '09' not in count_rain:# check 09 not in count_rain list
+                        count_rain.append('09')
+                if i[2][0:2] == '10':# check it equals to 10
+                    if '10' not in count_rain:# check 10 not in count_rain list
+                        count_rain.append('10')
+                if i[2][0:2] == '11':# check it equals to 11
+                    if '11' not in count_rain:# check 11 not in count_rain list
+                        count_rain.append('11')
+                else:
+                    pass # unless it will not count 
+
+        def func10():
+            destination_list.append(i[4])# append destination to the destination list
+
             
-    def func10():
-        destination_list.append(i[4])# append destination to the destination list
 
-    for i in data_list:
-        func1() # call the func1()
-    
-        if i[8]=='2': # check index 8 equals to '2'
-            func2() # call the func2()
-    
-        if int(i[5])<600: # check distace mile is under 600
-            func3() # call the func3()
-    
-        if i[1][0:2]=='AF': # check Air France air craft
-            func4()# call the func4()
+        for i in data_list:
+            func1() # call the func1()
+
+            if i[8]=='2': # check index 8 equals to '2'
+                func2() # call the func2()
+
+            if int(i[5])<600: # check distace mile is under 600
+                func3() # call the func3()
+
+            if i[1][0:2]=='AF': # check Air France air craft
+                func4()# call the func4()
+
+            if i[-1][0:2]<'15':# check the value only below 15
+                func5()
+
+            if i[1][0:2]=='BA':# check only starting from 'BA' in flightNum
+                func6()
             
-        if i[-1][0:2]<'15':# check the value only below 15
-            func5()
+            func7() # call the func7()
+            func8() # call the func8()
+            func9() # call the func9()
+            func10() # call the func11()
 
-        if i[1][0:2]=='BA':# check only starting from 'BA' in flightNum
-            func6()
-        
-        func7() # call the func7()
-        func8() # call the func8()
-        func9() # call the func9()
-        func10() # call the func11()
-        
         # create empty variables for counting destinations 
         count_lhr= count_mad= count_cdg= count_ist= count_ams= count_lis= count_fra= count_fco= count_muc= count_bcn= 0  
         destination_dict={} # empty dict
@@ -259,9 +269,10 @@ def main2():
             elif destination_list[x] == 'BCN':                  # check list's data equal to BCN
                 count_bcn += 1                                  # if equal, counting number of BCN
                 destination_dict[airport_code['BCN']]=count_bcn # input the total count to BCN key in destination_dict
+
             else:
                 print('something went wrong') # unless it will print this msg
-                
+
         least_destination_list=[] # empty list
         least_common_value= min(destination_dict.values()) # get minimum value in destination_dict values
         for y in destination_dict: # run a loop by using destination_dict
@@ -282,6 +293,7 @@ def main2():
     print(f'{percentage_delay_air_france}% of Air France departures were delayed')
     print(f'There were {len(count_rain)} hours in which rain fell')
     print(f'The least common destinations are {least_destination_list}')
+
 
     # Task C
     def main3():    
@@ -322,7 +334,7 @@ def main2():
 
     two_airline_code = main4()  # call main4() function and return two airline code value and assign it to two airine code
 
-def main5():
+    def main5():
         # create empty variables from count_00 to count_11
         count_00= count_01= count_02= count_03= count_04= count_05= count_06= count_07= count_08= count_09= count_10= count_11 = 0
         for y in data_list: # data_list assign to y line by line
@@ -362,3 +374,65 @@ def main5():
 
     hours = ['00','01','02','03','04','05','06','07','08','09','10','11']   # create a hours list
 
+    # create a Histogram
+    def histogram():
+        win = GraphWin('Hitogram', 900, 600) # create a graph window
+        win.setCoords(0,0,900,600) # set the coordinate system of the window
+
+        title_1 = Text(Point(450,580), f'Departures by hour for {air_line[two_airline_code]} from {airport_code[city_code]} {year}') # create a upper text part
+        title_1.setStyle('bold') # bold the title1 text
+        title_1.draw(win) # draw the text
+
+        title_2 = Text(Point(30, 300), 'Hours\n\n00:00\nto\n12:00') # create a left side title
+        title_2.draw(win) # draw the text
+
+        
+        vertical_line = Line(Point(90,30),Point(90,559)) # create a vertical line
+        vertical_line.draw(win) # draw the vertical line
+
+        y = 559 # starting left corner y point of rectangle 
+        z = 536 # starting right corner y point of rectangle
+        c = 0 # create a empty variable
+        maximum = max(departure_count_list) # get maximum value
+        if maximum<8: # check maximum less than 8
+            pix= 90
+        elif maximum<16:# check maximum less than 16
+            pix= 65
+        elif maximum <30:# check maximum less than 30
+            pix= 30
+        elif maximum >100:# check maximum greater than 100
+            pix= 1
+
+        for b in departure_count_list:
+            rectangle_loop = Rectangle(Point(90,y),Point(90+b*pix,z)) # create rectangles 
+            rectangle_loop.setFill('pink') # set them into pink color
+            rectangle_loop.draw(win) # draw the rectangles
+
+            point_start= rectangle_loop.getP1() # get left upper corner point each rectangle
+            point_start.move(-15, -12.5) # change its position
+            point_start_x = point_start.getX() # get its new x position
+            point_start_y = point_start.getY() # get its new y position
+            text_start = Text(Point(point_start_x, point_start_y), hours[c]) # set values in hours list in new position
+            text_start.draw(win) # draw the texts
+
+            point_final= rectangle_loop.getP2() # get right below corner point each rectangles
+            point_final.move(10,12.5) # change its position
+            point_final_x= point_final.getX() # get new x position
+            point_final_y= point_final.getY() # get new y position
+            text_final = Text(Point(point_final_x, point_final_y), b) # set values in departure_count_list in new position
+            text_final.draw(win)
+
+            y = y - 23*2 # create 23 pixcel width size rectangle and put 23 pixcel spaces between each rectangles
+            z = z - 23*2 
+            c += 1
+        win.getMouse() # when click the mouse on graph window, it will closes
+        win.close()
+
+    histogram() # call the histogram function
+
+    request = input('Do you want to select a new data file? Y/N:').upper() # get user input to run program again it convert upper
+
+else:
+    # Task E
+    print('Thank you. End of Run.') # end the program
+# End
