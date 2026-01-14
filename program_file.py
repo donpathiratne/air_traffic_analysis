@@ -321,3 +321,44 @@ def main2():
         return two_airline_code # to get two airline code value after
 
     two_airline_code = main4()  # call main4() function and return two airline code value and assign it to two airine code
+
+def main5():
+        # create empty variables from count_00 to count_11
+        count_00= count_01= count_02= count_03= count_04= count_05= count_06= count_07= count_08= count_09= count_10= count_11 = 0
+        for y in data_list: # data_list assign to y line by line
+            if two_airline_code == y[1][0:2]: # check two airline code equals to index[1][0:2] in data list   
+                if y[2][0:2] == '00':
+                    count_00 += 1       # if it equals to 00, count it
+                elif y[2][0:2]== '01':
+                    count_01 += 1       # if both equal to 01, count it
+                elif y[2][0:2] == '02':
+                    count_02 += 1       # if both equal to 02, count it
+                elif y[2][0:2] == '03':
+                    count_03 += 1       # if both equal to 03, count it
+                elif y[2][0:2] == '04':
+                    count_04 += 1       # if both equal to 04, count it
+                elif y[2][0:2] == '05':
+                    count_05 += 1       # if both equal to 05, count it
+                elif y[2][0:2] == '06':
+                    count_06 += 1       # if both equal to 06, count it
+                elif y[2][0:2] == '07':
+                    count_07 += 1       # if both equal to 07, count it
+                elif y[2][0:2] == '08':
+                    count_08 += 1       # if both equal to 08, count it
+                elif y[2][0:2] == '09':
+                    count_09 += 1       # if both equal to 09, count it
+                elif y[2][0:2] == '10':
+                    count_10 += 1       # if both equal to 10, count it
+                elif y[2][0:2] == '11':
+                    count_11 += 1       # if both equal to 11, count it
+                else:
+                    pass                # unless ignore it
+
+        # create a departure_count_list and assign above count values to it
+        departure_count_list =[count_00, count_01, count_02, count_03, count_04, count_05, count_06, count_07, count_08, count_09, count_10, count_11]
+        return departure_count_list
+
+    departure_count_list = main5()  # call the main5() function and get departure_count_list value and assign it 
+
+    hours = ['00','01','02','03','04','05','06','07','08','09','10','11']   # create a hours list
+
