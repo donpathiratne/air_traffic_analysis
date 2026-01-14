@@ -305,3 +305,19 @@ def main2():
         with open("result.txt", "r") as f:  # read the result.txt file
             f.read()
             f.close()
+
+    main3()
+
+    # Task D
+    def main4():
+        two_airline_code = input("Enter a two-character Airline code to plot a histogram: ").upper() # get two letter airline code and convert them uppercase
+        while True:
+            if two_airline_code not in air_line: # check two airline code that not available in air_line dict
+                print('Unavailable Airline code please try again.')
+                two_airline_code= input("Enter the two-character Airline code to plot a histogram: ").upper() # get two airline code again and convert it into upper
+                continue
+            else:
+                break
+        return two_airline_code # to get two airline code value after
+
+    two_airline_code = main4()  # call main4() function and return two airline code value and assign it to two airine code
